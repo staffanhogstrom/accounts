@@ -21,5 +21,6 @@ var server = app.listen(8080, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log("server listening at http://%s:%s", host, port);
+    /* eslint-disable-next-line no-console */
+    console.log('server listening at http://%s:%s', host, port);
 });

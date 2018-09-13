@@ -7,11 +7,28 @@ const accountsReference = firebase.database().ref(referencePath);
 module.exports = {
   listAccounts: listAccounts,
   createAccount: createAccount,
-  deleteAccount: deleteAccount
+  deleteAccount: deleteAccount,
+  updateAccount: updateAccount
 };
+
+/// function for updating email account. 
+async function updateAccount(id, email) {
+  console.log('updateAccount');
+
+  if (id) {
+    const userReference = accountsReference.child(id);
+    const snapshot = await userReference.once('value');
+    if (snapshot.exists()) {
+      userReference.update({ email: email });
+      return true;
+    }
+  }
+  return false;
+}
 
 /// function for deleting accounts by id.
 async function deleteAccount(id) {
+  /* eslint-disable-next-line no-console */
   console.log('deleteAccount');
 
   if (id) {
@@ -29,6 +46,7 @@ async function deleteAccount(id) {
 
 /// function that takes no input, and lists all items in firebase
 async function listAccounts() {
+  /* eslint-disable-next-line no-console */
   console.log('listAccounts');
 
   const snapshot = await accountsReference.orderByKey().once('value');
@@ -45,12 +63,13 @@ async function listAccounts() {
 
 /// function for creating account. 
 async function createAccount(email, username) {
-    console.log('createAccount');
+  /* eslint-disable-next-line no-console */
+  console.log('createAccount');
 
-    const accountRef = await accountsReference.push({
-      username: username,
-      email: email
-    });
+  const accountRef = await accountsReference.push({
+    username: username,
+    email: email
+  });
 
-    return accountRef.key;  
+  return accountRef.key;
 }

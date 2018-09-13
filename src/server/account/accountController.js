@@ -14,6 +14,21 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+/// HTTP PUT handler for updating item. similar functionality should also be added for patch so we can be more specific.
+router.put('/:id', async (req, res, next) => {
+  try {
+    //add validation
+    if (await accountService.updateAccount(req.params.id, req.body.email)) {
+      res.status(200).send();
+    } else {
+      res.status(404).send();
+    }
+    next();
+  } catch (exception) {
+    next(exception);
+  }
+});
+
 /// HTTP POST 
 router.post('/', async (req, res, next) => {
   try {
