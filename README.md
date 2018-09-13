@@ -28,11 +28,15 @@ you can also run both at the same time with the help of concurrently
 # deploy through now.sh
 
 it should be prepared to handle deployment with now.sh
+Before running now.sh, please run a 'npm run build' since express is set up to use static resources in /dist
+
 
 # future improvements
 
-More robust validation of in and output.
-
+More robust validation of input and output.
+Look into a more performant rest api, for example fastify
+Move authentication to users in db (firebase)
+Possibility to create users with password (and some kind of role)
 
 ## Todo
 
