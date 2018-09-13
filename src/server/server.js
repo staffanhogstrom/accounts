@@ -3,14 +3,21 @@ const bodyParser = require('body-parser');
 const config = require('../../firebase.config.json');
 const firebase = require('firebase');
 const expressValidator = require('express-validator');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(expressValidator());
+app.use(cors());
+app.use(cookieParser());
 
 firebase.initializeApp(config);
 
 const restAPIMountPath = '/api';
+
+//Set route to auth functions.
+app.use(restAPIMountPath + '/authenticate', require('./session/sessionController'));
 
 //Set route to account functions.
 app.use(restAPIMountPath + '/accounts', require('./account/accountController'));

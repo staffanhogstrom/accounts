@@ -13,6 +13,7 @@ module.exports = {
 
 /// function for updating email account. 
 async function updateAccount(id, email) {
+  /* eslint-disable-next-line no-console */
   console.log('updateAccount');
 
   if (id) {

@@ -1,11 +1,12 @@
 const express = require('express');
 const accountService = require('./accountService');
+const jwtService = require('../jwt/jwtService');
 
 /// Lets create a router, and map valid routes
 const router = express.Router();
 
 /// HTTP GET for root path, should list all existing account items.
-router.get('/', async (req, res, next) => {
+router.get('/', jwtService.tokenValidator, async (req, res, next) => {
   try {
     const users = await accountService.listAccounts();
     res.status(200).send(users);
