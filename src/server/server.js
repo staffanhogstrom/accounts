@@ -2,10 +2,11 @@ const express = require('express'); //import express
 const bodyParser = require('body-parser');
 const config = require('../../firebase.config.json');
 const firebase = require('firebase');
-
+const expressValidator = require('express-validator');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(expressValidator());
 
 firebase.initializeApp(config);
 

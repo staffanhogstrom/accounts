@@ -30,7 +30,7 @@ router.put('/:id', async (req, res, next) => {
 });
 
 /// HTTP POST 
-router.post('/', async (req, res, next) => {
+router.post('/', validateEmail, async (req, res, next) => {
   try {
     const username = req.body.username;
     const email = req.body.email;
@@ -58,5 +58,19 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
+/// email validation function
+function validateEmail(req, res, next) {
+
+  req.checkBody('email', 'Invalid Email').isEmail();
+
+  var errors = req.validationErrors(true);
+  if (errors) {
+    /// errors found, so send error code and info back to client.
+    res.status(400).send({ errors: errors });
+  }
+  else {
+    next();
+  }
+}
 
 module.exports = router;
