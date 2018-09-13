@@ -17,9 +17,6 @@ firebase.initializeApp(config);
 
 const restAPIMountPath = '/api';
 
-let test = path.join(__dirname, '/dist');
-
-
 //Set route to auth functions.
 app.use(restAPIMountPath + '/authenticate', require('./session/sessionController'));
 
