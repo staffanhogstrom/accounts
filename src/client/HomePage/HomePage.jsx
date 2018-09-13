@@ -13,8 +13,6 @@ class HomePage extends React.Component {
       edit_mode: false
     };
 
-    /*     this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this); */
     this.handleEditUser = this.handleEditUser.bind(this);
     this.handleCancelEditUser = this.handleCancelEditUser.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -26,35 +24,18 @@ class HomePage extends React.Component {
   }
 
   handleEditUser(user) {
-    console.log('handleEditUser');
-
     this.setState({ edit_mode: true, edit_user: user.id, user: { id: user.id, email: user.email} });
-
-
-    /* this.state = {
-      user: {
-          email: '',
-          password: ''s
-      },
-      submitted: false
-  }; */
-
-    //const { user, users } = this.props;
-    //return (e) => this.props.dispatch(userActions.edit(id));
   }
 
   handleDeleteUser(id) {
-    console.log('handleCancelEditUser');
     return (e) => this.props.dispatch(userActions.delete(id));
   }
 
   handleCancelEditUser() {
-    console.log('handleCancelEditUser');
     this.setState({ edit_mode: false, edit_user: '' });
   }
 
   handleSaveEditUser(event) {
-    console.log('handleSaveEditUser');
     event.preventDefault();
 
     
@@ -68,7 +49,6 @@ class HomePage extends React.Component {
   }
 
 handleChange(event) {
-  console.log('handleChange');
   const { name, value } = event.target;
   const { user } = this.state;
   this.setState({
@@ -142,10 +122,6 @@ handleChange(event) {
     );
   }
 }
-//<span>true - <a onClick={this.handleEditUser(user.id)}>Update</a></span> 
-//: false}
-////: edit_mode && user.id === edit_user && <span> <a onClick={this.handleCancelEditUser()}>Cancel</a></span>}
-
 function mapStateToProps(state) {
   const { users, authentication } = state;
   const { user } = authentication;

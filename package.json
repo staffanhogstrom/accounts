@@ -4,7 +4,8 @@
   "description": "A small application for managing accounts",
   "main": "index.js",
   "scripts": {
-    "client": "webpack-dev-server",
+    "client": "webpack-dev-server --env development",
+    "build": "webpack -p --env production",
     "server": "nodemon src/server/server.js",
     "dev": "concurrently --kill-others \"npm run client\" \"npm run server\"",
     "start": "node src/server/server.js",

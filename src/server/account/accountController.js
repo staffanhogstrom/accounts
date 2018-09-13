@@ -33,10 +33,9 @@ router.put('/:id', async (req, res, next) => {
 /// HTTP POST 
 router.post('/', validateEmail, async (req, res, next) => {
   try {
-    const username = req.body.username;
     const email = req.body.email;
 
-    const userKey = await accountService.createAccount(email, username);
+    const userKey = await accountService.createAccount(email);
     if (userKey) {
       res.send({ status: true, id: userKey, message: 'Data saved successfully.' });
     }

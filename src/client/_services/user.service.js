@@ -22,7 +22,6 @@ function login(email, password) {
     return fetch(`${config.apiUrl}/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
-          console.log('after login');
             // login successful if there's a jwt token in the response
             if (user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -63,7 +62,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${config.apiUrl}/accounts/register`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/accounts`, requestOptions).then(handleResponse);
 }
 
 function update(user) {

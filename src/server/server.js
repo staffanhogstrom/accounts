@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 firebase.initializeApp(config);
 
+//default mount for all apis.
 const restAPIMountPath = '/api';
 
 //Set route to auth functions.
@@ -23,6 +24,7 @@ app.use(restAPIMountPath + '/authenticate', require('./session/sessionController
 //Set route to account functions.
 app.use(restAPIMountPath + '/accounts', require('./account/accountController'));
 
+//Server static content from dist folder
 app.use(express.static(path.join(__dirname, '../../dist')));
 
 //start server on port: 8080

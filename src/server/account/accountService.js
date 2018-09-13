@@ -63,12 +63,11 @@ async function listAccounts() {
 
 
 /// function for creating account. 
-async function createAccount(email, username) {
+async function createAccount(email) {
   /* eslint-disable-next-line no-console */
   console.log('createAccount');
 
   const accountRef = await accountsReference.push({
-    username: username,
     email: email
   });
 
