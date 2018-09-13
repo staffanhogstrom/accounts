@@ -28,7 +28,7 @@ you can also run both at the same time with the help of concurrently
 # deploy through now.sh
 
 it should be prepared to handle deployment with now.sh
-Before running now.sh, please run a 'npm run build' since express is set up to use static resources in /dist
+now.sh runs "npm run build" and then "npm run start" so everything should be handle remotely.
 
 
 # future improvements
