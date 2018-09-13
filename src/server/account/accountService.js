@@ -6,6 +6,7 @@ const accountsReference = firebase.database().ref(referencePath);
 
 module.exports = {
   listAccounts: listAccounts,
+  createAccount: createAccount
 };
 
 /// function that takes no input, and lists all items in firebase
@@ -21,4 +22,17 @@ async function listAccounts() {
     users.push(userItem);
   });
   return users;
+}
+
+
+/// function for creating account. 
+async function createAccount(email, username) {
+    console.log('createAccount');
+
+    const accountRef = await accountsReference.push({
+      username: username,
+      email: email
+    });
+
+    return accountRef.key;  
 }
