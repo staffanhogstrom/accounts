@@ -6,8 +6,26 @@ const accountsReference = firebase.database().ref(referencePath);
 
 module.exports = {
   listAccounts: listAccounts,
-  createAccount: createAccount
+  createAccount: createAccount,
+  deleteAccount: deleteAccount
 };
+
+/// function for deleting accounts by id.
+async function deleteAccount(id) {
+  console.log('deleteAccount');
+
+  if (id) {
+    const userReference = accountsReference.child(id);
+    const snapshot = await userReference.once('value');
+    /// checks so item exists. then deletes it.
+    if (snapshot.exists()) {
+      userReference.remove();
+      return true;
+    }
+  }
+  return false;
+}
+
 
 /// function that takes no input, and lists all items in firebase
 async function listAccounts() {

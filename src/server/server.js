@@ -1,6 +1,6 @@
 const express = require('express'); //import express 
 const bodyParser = require('body-parser');
-const config = require('./config.json');
+const config = require('../../firebase.config.json');
 const firebase = require('firebase');
 
 

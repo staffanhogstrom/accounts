@@ -1,7 +1,7 @@
 const express = require('express');
 const accountService = require('./accountService');
 
-// Lets create a router, and map valid routes
+/// Lets create a router, and map valid routes
 const router = express.Router();
 
 /// HTTP GET for root path, should list all existing account items.
@@ -28,5 +28,20 @@ router.post('/', async (req, res, next) => {
     next(exception);
   }
 });
+
+/// handler for HTTP Delete by id. deletes entity if found.
+router.delete('/:id', async (req, res, next) => {
+  try {
+    if (await accountService.deleteAccount(req.params.id)) {
+      res.status(200).send();
+    } else {
+      res.status(404).send();
+    }
+    next();
+  } catch (exception) {
+    next(exception);
+  }
+});
+
 
 module.exports = router;
