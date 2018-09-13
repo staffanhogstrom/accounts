@@ -11,9 +11,10 @@ router.post('/', validator, async (req, res, next) => {
     //add validation
     if (await sessionService.authenticateAccount(req.body.email, req.body.password)) {
 
+      //real jwt token
       const sessionToken = jwtService.getJWTSessionToken(req.body.email);
-      //const sessionToken = await accountService.getSessionToken();
-      //res.setHeader('Set-Cookie', 'access-token=' + sessionToken + '; HttpOnly');
+
+      //Set token on HTTP only cookie. Harder to XSS.
       res.cookie('access-token',sessionToken, { maxAge: 900000, httpOnly: true });
       res.status(200).send({ token: sessionToken, message: 'Authenticated' });
     } else {

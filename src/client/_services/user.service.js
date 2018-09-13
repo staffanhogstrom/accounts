@@ -14,13 +14,15 @@ export const userService = {
 function login(email, password) {
     const requestOptions = {
         method: 'POST',
+        credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     };
 
-    return fetch(`${config.apiUrl}/accounts/authenticate`, requestOptions)
+    return fetch(`${config.apiUrl}/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
+          console.log('after login');
             // login successful if there's a jwt token in the response
             if (user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes

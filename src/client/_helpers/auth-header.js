@@ -3,7 +3,10 @@ export function authHeader() {
     let user = JSON.parse(localStorage.getItem('user'));
 
     if (user && user.token) {
-        return { 'Authorization': 'Bearer ' + user.token };
+      //forcing in a simpler way right now.
+      return { 'x-access-token' : user.token };
+      //this is correct way.
+      //return { 'Authorization': 'Bearer ' + user.token };
     } else {
         return {};
     }
