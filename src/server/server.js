@@ -5,6 +5,7 @@ const firebase = require('firebase');
 const expressValidator = require('express-validator');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,12 +17,16 @@ firebase.initializeApp(config);
 
 const restAPIMountPath = '/api';
 
+let test = path.join(__dirname, '/dist');
+
+
 //Set route to auth functions.
 app.use(restAPIMountPath + '/authenticate', require('./session/sessionController'));
 
 //Set route to account functions.
 app.use(restAPIMountPath + '/accounts', require('./account/accountController'));
 
+app.use(express.static(path.join(__dirname, '../../dist')));
 
 //start server on port: 8080
 var server = app.listen(8080, function () {
