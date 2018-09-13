@@ -10,26 +10,31 @@ Built with nodejs/express
 
 # Getting started
 
-You need a firebase configuration to run server functionality. 
+You need a firebase configuration to run server functionality. So please add
+a firebase configuration json file (firebase.config.json) needs to be in root of project. 
+
 to start server locally there are a prepared npm command, 
 
-npm run server
+- npm run server
 
-# firebase config 
+to start only client use:
 
-a firebase configuration json file needs to be in root of project. 
-filename: firebase.config.json
+- npm run client
 
+you can also run both at the same time with the help of concurrently
+
+- npm run dev
+
+# deploy through now.sh
+
+it should be prepared to handle deployment with now.sh
+
+# future improvements
+
+More robust validation of in and output.
 
 
 ## Todo
 
-email validation
-simple auth
-some kind of simple frontend
-
-must haves: 
-deploy through now.sh
-runnable on local machine, describe
 prettier 
 
